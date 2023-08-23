@@ -1,6 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "plugin:@next/next/recommended", "prettier"],
   "rules": {
+    "indent": ["warn", 2],
     "no-unused-vars": "warn"
   }
 }
