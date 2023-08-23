@@ -1,9 +1,13 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from 'react'
 
 const DashboardError = () => {
-  return <div>DashboardError</div>;
-};
+  return (
+    <div>
+      <h1>Something went wrong</h1>
+    </div>
+  )
+}
 
-export default DashboardError;
+export default DashboardError
