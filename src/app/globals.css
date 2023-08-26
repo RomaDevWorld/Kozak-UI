@@ -20,3 +20,51 @@ body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  flex-direction: column;
+}
+
+select {
+  color: inherit;
+  background-color: inherit;
+  border: 1px solid white;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+option {
+  background-color: black;
+}
+
+button {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: rgb(0, 140, 255);
+}
+
+button:disabled {
+  animation: fade 1s infinite;
+}
+
+@keyframes fade {
+  0% {
+    background-color: grey;
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    background-color: grey;
+  }
+}

@@ -13,7 +13,7 @@ const DashboardError = ({ error, reset }: { error: Error; reset: () => void }) =
       <h2>
         <b>Error:</b> {error.message}
       </h2>
-      <button onClick={reset} className="p-4 bg-red-500 rounded-lg flex items-center justify-center">
+      <button onClick={reset} className="py-3 px-4 bg-red-500 rounded-lg flex items-center justify-center">
         Try again
       </button>
     </div>
