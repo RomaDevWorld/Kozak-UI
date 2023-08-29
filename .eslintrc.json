@@ -2,6 +2,9 @@
   "extends": ["next/core-web-vitals", "plugin:@next/next/recommended", "prettier"],
   "rules": {
     "indent": ["warn", 2],
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "semi": ["warn", "never"],
+    "no-multiple-empty-lines": ["warn", { "max": 1 }],
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
   }
 }
