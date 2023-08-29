@@ -3,6 +3,7 @@
 import { LogTypes, Modules } from '@/types/Modules'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 
 const LogTypeToggle = ({ modules, type }: { modules: Modules; type: keyof LogTypes }) => {
   const [active, setActive] = useState(modules.log.types[type])
@@ -19,7 +20,10 @@ const LogTypeToggle = ({ modules, type }: { modules: Modules; type: keyof LogTyp
       }
 
       await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${modules.guildId}/admin/modules`, payload, { withCredentials: true })
+
+      toast.success('Setting applied!')
     } catch (error) {
+      toast.error('Request failed!')
       console.error(error)
     } finally {
       setSaving(false)
