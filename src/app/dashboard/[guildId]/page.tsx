@@ -1,5 +1,4 @@
 import PartialGuild from '@/types/PartialGuild'
-import axios from 'axios'
 import { cookies } from 'next/headers'
 import React from 'react'
 import Image from 'next/image'
@@ -8,7 +7,10 @@ import GuildOverviewTile from '@/components/GuildOverviewTile'
 const GuildOverviewPage = async ({ params }: { params: { guildId: string } }) => {
   const guildId = params.guildId
 
-  const { data } = await axios.get<PartialGuild>(process.env.NEXT_PUBLIC_APIURL + '/guilds/' + params.guildId, { headers: { Cookie: `connect.sid=${cookies().get('connect.sid')?.value}` } })
+  const response = await fetch(process.env.NEXT_PUBLIC_APIURL + '/guilds/' + params.guildId, { headers: { Cookie: `connect.sid=${cookies().get('connect.sid')?.value}` } })
+  if (!response.ok) throw new Error(response.statusText)
+
+  const data: PartialGuild = await response.json()
 
   return (
     <>

@@ -26,6 +26,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 15px;
+  gap: 15px;
   flex-direction: column;
 }
 

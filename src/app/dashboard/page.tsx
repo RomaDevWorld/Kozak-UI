@@ -1,18 +1,14 @@
 import PartialGuild from '@/types/PartialGuild'
-import axios from 'axios'
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
+import AddBotButton from '@/components/buttons/AddBotButton'
 
 const DashboardPage = async () => {
-  const cookie = cookies().get('connect.sid') as RequestCookie
-  const { data: guilds } = await axios.get<PartialGuild[]>(process.env.NEXT_PUBLIC_APIURL + '/guilds/', {
-    headers: {
-      Cookie: `connect.sid=${cookie.value}`,
-    },
-  })
+  const response = await fetch(process.env.NEXT_PUBLIC_APIURL + '/guilds/', { headers: { Cookie: `connect.sid=${cookies().get('connect.sid')?.value}` }, next: { revalidate: 60 } })
+  if (!response.ok) return
+  const guilds: PartialGuild[] = await response.json()
 
   return (
     <div className="flex flex-col w-full h-full items-center gap-5">
@@ -26,6 +22,10 @@ const DashboardPage = async () => {
             </Link>
           </div>
         ))}
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <h2>{`Don't see your guilds? Try adding the bot to your server!`}</h2>
+        <AddBotButton />
       </div>
     </div>
   )

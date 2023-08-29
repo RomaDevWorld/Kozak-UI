@@ -1,11 +1,14 @@
 import PartialChannel from '@/types/PartialChannel'
-import axios from 'axios'
 import { cookies } from 'next/headers'
 
 const fetchGuildModules = async (guildId: string) => {
-  const { data } = await axios.get<PartialChannel[]>(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/channels`, { headers: { Cookie: `connect.sid=${cookies().get('connect.sid')?.value}` } })
+  const response = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/channels`, { headers: { Cookie: `connect.sid=${cookies().get('connect.sid')?.value}` }, next: { revalidate: 10 } })
 
-  return data
+  if (!response.ok) throw new Error(response.statusText)
+
+  const data = await response.json()
+
+  return data as PartialChannel[]
 }
 
 export default fetchGuildModules
