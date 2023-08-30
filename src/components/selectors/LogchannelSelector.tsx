@@ -21,6 +21,7 @@ const LogchannelSelector = ({ channels, modules }: { channels: PartialChannel[];
 
       toast.success('Setting applied!')
     } catch (err) {
+      toast.error('Request failed!')
       console.error(err)
     } finally {
       setSaving(false)
