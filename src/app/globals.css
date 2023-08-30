@@ -39,6 +39,15 @@ select {
   border-radius: 5px;
 }
 
+input {
+  color: inherit;
+  background-color: inherit;
+  border: 1px solid white;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 option {
   background-color: black;
 }
