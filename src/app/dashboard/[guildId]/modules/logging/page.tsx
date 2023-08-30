@@ -1,4 +1,4 @@
-import LogchannelSelector from '@/components/selectors/LogchannelSelector'
+import LogChannelSelector from '@/components/selectors/LogChannelSelector'
 import LogTypeToggle from '@/components/toggles/LogTypeToggle'
 import fetchGuildChannels from '@/utils/api/fetchGuildChannels'
 import fetchGuildModules from '@/utils/api/fetchGuildModules'
@@ -12,7 +12,7 @@ const LoggingModulePage = async ({ params }: { params: { guildId: string } }) =>
     <div className="container flex flex-col gap-5">
       <div>
         <h1 className="text-2xl font-bold text-center">Set log channel</h1>
-        <LogchannelSelector channels={channels} modules={modules} />
+        <LogChannelSelector channels={channels} modules={modules} />
       </div>
       <div className="flex flex-col gap-3 items-center">
         <h1 className="text-2xl font-bold text-center">Toggle log types</h1>

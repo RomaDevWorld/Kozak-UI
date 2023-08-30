@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { ChannelOption } from './options/ChannelOption'
 
-const LogchannelSelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
+const LogChannelSelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
   const guildId = modules.guildId
 
   const [selectedChannel, setSelectedChannel] = useState(modules.log?.channel || '')
@@ -42,4 +42,4 @@ const LogchannelSelector = ({ channels, modules }: { channels: PartialChannel[];
   )
 }
 
-export default LogchannelSelector
+export default LogChannelSelector
