@@ -5,6 +5,7 @@ import PartialChannel from '@/types/PartialChannel'
 import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { ChannelOption } from './options/ChannelOption'
 
 const CounterChannelSelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
   const guildId = modules.guildId
@@ -34,7 +35,7 @@ const CounterChannelSelector = ({ channels, modules }: { channels: PartialChanne
         {channels
           .filter((channel) => [2, 4].includes(channel.type))
           .map((channel) => (
-            <option key={channel.id} value={channel.id}>{`${channel.type === 2 ? 'Category' : 'Voice'}: ${channel.name} (ID: ${channel.id})`}</option>
+            <ChannelOption channel={channel} key={channel.id} showTypes={true} />
           ))}
       </select>
     </div>

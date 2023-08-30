@@ -5,6 +5,7 @@ import PartialChannel from '@/types/PartialChannel'
 import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { ChannelOption } from './options/ChannelOption'
 
 const LogchannelSelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
   const guildId = modules.guildId
@@ -34,7 +35,7 @@ const LogchannelSelector = ({ channels, modules }: { channels: PartialChannel[];
         {channels
           .filter((channel) => channel.type === 0)
           .map((channel) => (
-            <option key={channel.id} value={channel.id}>{`#${channel.name} (ID: ${channel.id})`}</option>
+            <ChannelOption key={channel.id} channel={channel} />
           ))}
       </select>
     </div>
