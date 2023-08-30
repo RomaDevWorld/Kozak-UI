@@ -1,12 +1,12 @@
 import Navbar from '@/components/Navbar'
 import PartialGuild from '@/types/PartialGuild'
+import fetchGuild from '@/utils/api/fetchGuild'
 import type { Metadata } from 'next'
-import { cookies } from 'next/headers'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export async function generateMetadata({ params }: { params: { guildId: string } }): Promise<Metadata> {
-  const response = await fetch(process.env.NEXT_PUBLIC_APIURL + '/guilds/' + params.guildId, { headers: { Cookie: `connect.sid=${cookies().get('connect.sid')?.value}` }, next: { revalidate: 60 } })
+  const response = await fetchGuild(params.guildId)
 
   if (!response.ok) return { title: 'Cossack Dashboard' }
   const data: PartialGuild = await response.json()
@@ -15,10 +15,13 @@ export async function generateMetadata({ params }: { params: { guildId: string }
     title: `Cossack Dashboard | ${data.name}`,
   }
 }
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children, params }: { children: React.ReactNode; params: { guildId: string } }) {
+  const response = await fetchGuild(params.guildId)
+  const data: PartialGuild = await response.json()
+
   return (
     <div>
-      <Navbar />
+      <Navbar guild={data} />
       {children}
       <ToastContainer position="bottom-right" theme="dark" autoClose={1500} newestOnTop={true} />
     </div>
