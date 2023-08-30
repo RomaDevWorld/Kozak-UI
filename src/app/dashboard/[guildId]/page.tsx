@@ -26,7 +26,7 @@ const GuildOverviewPage = async ({ params }: { params: { guildId: string } }) =>
       <h3 className="text-center text-2xl mb-3">Configure modules</h3>
       <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 text-center">
         <GuildOverviewTile label="Logging" href={guildId + `/modules/logging`} />
-        <GuildOverviewTile label="Counters" href={guildId + `/modules/counters`} />
+        <GuildOverviewTile label="Counter" href={guildId + `/modules/counter`} />
         <GuildOverviewTile label="Tickets" href={guildId + `/modules/tickets`} />
         <GuildOverviewTile label="Auto roles" href={guildId + `/modules/auto-roles`} />
         <GuildOverviewTile label="XP" href={guildId + `/modules/xp`} />
