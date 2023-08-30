@@ -17,7 +17,7 @@ const GuildOverviewPage = async ({ params }: { params: { guildId: string } }) =>
       <h1 className="text-3xl font-bold text-center m-3">Guild Overview</h1>
       <div className="flex flex-col gap-5 p-3 items-center md:flex-row md:justify-center">
         <div className="relative w-[200px] h-[200px]">
-          <Image src={`https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png`} alt="Guild icon" fill />
+          <Image src={`https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png`} className="rounded-lg" alt="Guild icon" fill />
         </div>
         <div className="flex flex-col text-3xl font-bold">
           <h2>{data.name}</h2>
