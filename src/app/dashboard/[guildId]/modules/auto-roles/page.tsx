@@ -14,7 +14,7 @@ const AutoRoleModulePage = async ({ params }: { params: { guildId: string } }) =
         <h1 className="text-2xl font-bold text-center">Auto role selector</h1>
         <AutoRoleSelector roles={roles} modules={modules} />
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <h1 className="text-2xl font-bold text-center">Role restore</h1>
         <RoleRestoreToggle modules={modules} />
       </div>

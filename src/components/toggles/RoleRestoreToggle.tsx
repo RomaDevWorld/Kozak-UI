@@ -9,14 +9,14 @@ const RoleRestoreToggle = ({ modules }: { modules: Modules }) => {
   const [active, setActive] = useState(modules.roles.restore.status)
   const [saving, setSaving] = useState(false)
 
-  const handleToggle = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleToggle = async () => {
     setSaving(true)
 
     setActive(!active)
 
     try {
       const payload = {
-        [`roles.restore.status`]: event.target.checked,
+        [`roles.restore.status`]: active,
       }
 
       await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${modules.guildId}/admin/modules`, payload, { withCredentials: true })
@@ -29,10 +29,28 @@ const RoleRestoreToggle = ({ modules }: { modules: Modules }) => {
       setSaving(false)
     }
 
-    setActive(event.target.checked)
+    setActive(!active)
   }
 
-  return <input type="checkbox" disabled={saving} name="checkbox" checked={active} onChange={handleToggle} />
+  if (saving)
+    return (
+      <div className="flex justify-center items-center p-3 px-5 rounded-md bg-slate-400">
+        <h3 className="capitalize font-bold">{active ? 'ON' : 'OFF'}</h3>
+      </div>
+    )
+
+  if (active)
+    return (
+      <div className="flex justify-center items-center p-3 px-5 rounded-md bg-green-400 cursor-pointer" onClick={handleToggle}>
+        <h3 className="capitalize font-bold">{active ? 'ON' : 'OFF'}</h3>
+      </div>
+    )
+
+  return (
+    <div className="flex justify-center items-center p-3 px-5 rounded-md bg-red-700 cursor-pointer" onClick={handleToggle}>
+      <h3 className="capitalize font-bold">{active ? 'ON' : 'OFF'}</h3>
+    </div>
+  )
 }
 
 export default RoleRestoreToggle
