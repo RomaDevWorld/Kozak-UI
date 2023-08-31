@@ -14,7 +14,7 @@ const LoggingModulePage = async ({ params }: { params: { guildId: string } }) =>
         <h1 className="text-2xl font-bold text-center">Set log channel</h1>
         <LogChannelSelector channels={channels} modules={modules} />
       </div>
-      <div className="flex flex-col gap-3 items-center">
+      <div className="flex flex-col gap-3 items-center text-xl">
         <h1 className="text-2xl font-bold text-center">Toggle log types</h1>
         <h2>Messages</h2>
         <LogTypeToggle type="messageDelete" modules={modules} />
