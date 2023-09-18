@@ -52,18 +52,18 @@ option {
   background-color: black;
 }
 
-button {
+.button {
   border: 1px solid white;
   border-radius: 5px;
   padding: 5px;
   margin: 5px;
 }
 
-button:hover {
+.button:hover {
   background-color: rgb(0, 140, 255);
 }
 
-button:disabled {
+.button:disabled {
   animation: fade 1s infinite;
 }
 

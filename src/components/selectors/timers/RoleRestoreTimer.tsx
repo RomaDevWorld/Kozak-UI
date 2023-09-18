@@ -71,7 +71,7 @@ const RoleRestoreTimer = ({ modules }: { modules: Modules }) => {
         <label htmlFor="seconds">Seconds</label>
         <input id="seconds" type="number" value={seconds} min={0} max={60} onChange={handleSecondsChange} />
       </div>
-      <button onClick={handleSave} disabled={(!days && !hours && !minutes && !seconds) || saving}>
+      <button onClick={handleSave} className="button" disabled={(!days && !hours && !minutes && !seconds) || saving}>
         {saving ? 'Saving...' : 'Save'}
       </button>
     </div>

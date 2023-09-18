@@ -12,7 +12,7 @@ const NavBar = ({ guild }: { guild: PartialGuild }) => {
     <div>
       <nav className="border-b-2 flex items-center justify-between p-2 mb-2">
         <button onClick={() => setOpen(!open)}>
-          <Image className="invert" src="/sidebar.svg" width={25} height={25} alt="Open side menu" />
+          <Image className="invert" src="/sidebar.svg" width={30} height={30} alt="Open side menu" />
         </button>
         <Link href={`/dashboard/${guild.id}`} className="flex justify-center items-center gap-3">
           <span className="text-center text-xl font-bold">{guild.name}</span>
@@ -21,7 +21,7 @@ const NavBar = ({ guild }: { guild: PartialGuild }) => {
       </nav>
       {open && (
         <div className="flex flex-col items-center fixed w-full h-full bg-black text-2xl z-10">
-          <Link href="/dashboard/">Back to menu</Link>
+          <Link href="/dashboard/">Back to Guild selector</Link>
         </div>
       )}
     </div>

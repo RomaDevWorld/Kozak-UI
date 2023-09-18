@@ -1,12 +1,12 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
+import { Ring } from '@uiball/loaders'
 
 const DashboardLoading = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Image className="invert" src="/loading.webp" alt="Loading" width={100} height={100} />
+    <div className="flex flex-col items-center justify-center h-screen gap-3">
+      <Ring size={35} color="#FFF" />
       <h1 className="text-4xl font-bold">Loading...</h1>
     </div>
   )

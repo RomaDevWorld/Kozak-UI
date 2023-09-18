@@ -37,6 +37,7 @@ export interface Modules {
 
 export interface Ticket {
   _id: string
+  prefix: string
   channelId: string
   messageId: string
   allowedRoles: string[]

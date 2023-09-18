@@ -28,7 +28,7 @@ const CounterNameInput = ({ modules }: { modules: Modules }) => {
   return (
     <div className="flex gap-2">
       <input type="text" onChange={(e) => setChannelName(e.target.value)} value={channelName} placeholder="Members: ON/MEM" maxLength={50} />
-      <button onClick={saveSelection} disabled={saving || channelName === modules.counter?.label || channelName.length === 0}>
+      <button onClick={saveSelection} className="button" disabled={saving || channelName === modules.counter?.label || channelName.length === 0}>
         {saving ? 'Saving...' : 'Save'}
       </button>
     </div>
