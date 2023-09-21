@@ -13,7 +13,7 @@ const GuildOverviewPage = async ({ params }: { params: { guildId: string } }) =>
         <GuildOverviewTile label="Counter" href={guildId + `/modules/counter`} />
         {/* <GuildOverviewTile label="Tickets" href={guildId + `/modules/tickets`} /> */}
         <GuildOverviewTile label="Auto roles" href={guildId + `/modules/auto-roles`} />
-        <GuildOverviewTile label="XP" href={guildId + `/modules/xp`} />
+        <GuildOverviewTile label="Leveling" href={guildId + `/modules/leveling`} />
       </div>
     </>
   )
