@@ -31,7 +31,7 @@ const CounterChannelSelector = ({ channels, modules }: { channels: PartialChanne
 
   return (
     <div className="flex flex-col">
-      <select disabled={saving} id="counterChannelSelect" value={selectedChannel} onChange={handleChannelSelect}>
+      <select disabled={saving} className="max-w-[95vw]" id="counterChannelSelect" value={selectedChannel} onChange={handleChannelSelect}>
         {channels
           .filter((channel) => [2, 4].includes(channel.type))
           .map((channel) => (

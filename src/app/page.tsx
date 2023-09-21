@@ -14,7 +14,7 @@ const Home = () => {
         <h2 className="text-2xl">A free-to-use Discord bot for your server</h2>
         {isLogged ? (
           <div className="flex flex-col gap-3 items-center">
-            <DashboardButton /> or <DiscordLoginButton />
+            <DashboardButton />
           </div>
         ) : (
           <DiscordLoginButton />
