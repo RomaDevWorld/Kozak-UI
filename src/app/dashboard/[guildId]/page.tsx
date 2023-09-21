@@ -1,11 +1,8 @@
 import React from 'react'
 import GuildOverviewTile from '@/components/GuildOverviewTile'
-import fetchGuild from '@/utils/api/fetchGuild'
 
 const GuildOverviewPage = async ({ params }: { params: { guildId: string } }) => {
   const guildId = params.guildId
-
-  const guild = await fetchGuild(params.guildId)
 
   return (
     <>
@@ -14,7 +11,7 @@ const GuildOverviewPage = async ({ params }: { params: { guildId: string } }) =>
       <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 text-center">
         <GuildOverviewTile label="Logging" href={guildId + `/modules/logging`} />
         <GuildOverviewTile label="Counter" href={guildId + `/modules/counter`} />
-        <GuildOverviewTile label="Tickets" href={guildId + `/modules/tickets`} />
+        {/* <GuildOverviewTile label="Tickets" href={guildId + `/modules/tickets`} /> */}
         <GuildOverviewTile label="Auto roles" href={guildId + `/modules/auto-roles`} />
         <GuildOverviewTile label="XP" href={guildId + `/modules/xp`} />
       </div>
