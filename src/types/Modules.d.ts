@@ -32,6 +32,17 @@ export interface Modules {
       expireTime: number
     }
   }
+  leveling: {
+    status: boolean
+    minXp: number
+    maxXp: number
+    cooldown: number
+    notifications: {
+      onLvlUp: boolean
+    }
+    ignoredChannels: string[]
+    ignoredRoles: string[]
+  }
   tickets: Ticket[]
 }
 
