@@ -1,5 +1,5 @@
 import AutoRoleSelector from '@/components/selectors/AutoRoleSelector'
-import RoleRestoreTimer from '@/components/selectors/timers/RoleRestoreTimer'
+import RoleRestoreTimer from '@/components/selectors/numbers/RoleRestoreTimer'
 import RoleRestoreToggle from '@/components/toggles/RoleRestoreToggle'
 import fetchGuildModules from '@/utils/api/fetchGuildModules'
 import fetchGuildRoles from '@/utils/api/fetchGuildRoles'
