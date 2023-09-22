@@ -1,4 +1,5 @@
 import MinMaxXp from '@/components/selectors/numbers/MinMaxXp'
+import XpCooldownSelector from '@/components/selectors/numbers/XpCooldownSelector'
 import LevelingModuleToggle from '@/components/toggles/LevelingModuleToggle'
 import fetchGuildModules from '@/utils/api/fetchGuildModules'
 import React from 'react'
@@ -16,6 +17,10 @@ const LevelingModulePage = async ({ params }: { params: { guildId: string } }) =
       <div className="flex flex-row gap-10 items-center">
         <h1 className="text-xl font-bold">XP range</h1>
         <MinMaxXp modules={modules} />
+      </div>
+      <div className="flex flex-row gap-10 items-center">
+        <h1 className="text-xl font-bold">XP cooldown</h1>
+        <XpCooldownSelector modules={modules} />
       </div>
     </div>
   )
