@@ -11,13 +11,13 @@ const DashboardPage = async () => {
   const guilds: PartialGuild[] = await response.json()
 
   return (
-    <div className="flex flex-col w-full h-full items-center gap-5">
-      <h1 className="font-bold text-3xl text-center">Please select a Guild</h1>
-      <div className="grid gap-3">
+    <div className="p-5 flex flex-col w-full h-full items-center gap-5">
+      <h1 className="font-bold text-3xl text-center">Servers</h1>
+      <div className="flex flex-wrap gap-4 justify-center items-center w-[95vw] bg-slate-400 p-5 rounded-lg">
         {guilds.map((guild) => (
-          <div key={guild.id}>
-            <Link href={`/dashboard/${guild.id}`}>
-              <Image src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`} alt="Guild icon" width={200} height={200} className="rounded-lg" />
+          <div key={guild.id} className="flex rounded-md p-5 bg-slate-500 w-[250px] h-[250px]">
+            <Link href={`/dashboard/${guild.id}`} className="flex justify-center flex-col items-center">
+              <Image src={guild.icon !== null ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : '/discord.svg'} alt="Guild icon" width={200} height={200} className="rounded-lg object-cover" />
               <h1 className="text-2xl font-bold text-center">{guild.name}</h1>
             </Link>
           </div>
