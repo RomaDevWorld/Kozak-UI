@@ -8,12 +8,12 @@ const GuildOverviewPage = async ({ params }: { params: { guildId: string } }) =>
     <>
       <h1 className="text-3xl font-bold text-center m-3">Guild Overview</h1>
       <h3 className="text-center text-2xl mb-3">Configure modules</h3>
-      <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 text-center">
-        <GuildOverviewTile label="Logging" href={guildId + `/modules/logging`} />
-        <GuildOverviewTile label="Counter" href={guildId + `/modules/counter`} />
+      <div className="flex flex-wrap gap-4 justify-center items-center w-screen p-5 rounded-lg">
+        <GuildOverviewTile icon="/radio.svg" label="Logging" href={guildId + `/modules/logging`} />
+        <GuildOverviewTile icon="/monitor.svg" label="Counter" href={guildId + `/modules/counter`} />
         {/* <GuildOverviewTile label="Tickets" href={guildId + `/modules/tickets`} /> */}
-        <GuildOverviewTile label="Auto roles" href={guildId + `/modules/auto-roles`} />
-        <GuildOverviewTile label="Leveling" href={guildId + `/modules/leveling`} />
+        <GuildOverviewTile icon="/users.svg" label="Auto roles" href={guildId + `/modules/auto-roles`} />
+        <GuildOverviewTile icon="/bar-chart-2.svg" label="Leveling" href={guildId + `/modules/leveling`} />
       </div>
     </>
   )
