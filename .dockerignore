@@ -7,4 +7,3 @@ npm-debug.log
 .git
 .vscode
 .github
-*.env
