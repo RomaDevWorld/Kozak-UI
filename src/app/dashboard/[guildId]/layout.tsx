@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: { guildId: string }
   const guild = await fetchGuild(params.guildId)
 
   return {
-    title: `Cossack Dashboard | ${guild.name}`,
+    title: `Kozak Dashboard | ${guild.name}`,
   }
 }
 export default async function RootLayout({ children, params }: { children: React.ReactNode; params: { guildId: string } }) {
