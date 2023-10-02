@@ -32,6 +32,7 @@ const LogChannelSelector = ({ channels, modules }: { channels: PartialChannel[];
   return (
     <div className="flex flex-col">
       <select disabled={saving} className="max-w-[95vw]" id="logChannelSelect" value={selectedChannel} onChange={handleChannelSelect}>
+        <option value="">None</option>
         {channels
           .filter((channel) => channel.type === 0)
           .map((channel) => (
