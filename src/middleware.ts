@@ -11,7 +11,7 @@ export const middleware = async (req: NextRequest) => {
     },
   })
 
-  return response.ok ? NextResponse.next() : NextResponse.redirect(new URL('/auth/discord', process.env.NEXT_PUBLIC_APIURL))
+  return response.ok ? NextResponse.next() : NextResponse.redirect(new URL(process.env.NEXT_PUBLIC_APIURL + `/auth/discord`))
 }
 
 export const config = {
