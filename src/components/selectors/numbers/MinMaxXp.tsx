@@ -40,18 +40,20 @@ const MinMaxXp = ({ modules }: { modules: Modules }) => {
   }
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="flex flex-col items-center justify-between">
-        <label htmlFor="min">Min</label>
-        <input id="min" type="number" value={min} min={0} max={10000} onChange={handleMinChange} />
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center justify-between md:flex-col md:items-start">
+        <label htmlFor="min">MIN</label>
+        <input className="w-1/2 md:w-1/5" id="min" type="number" value={min} min={0} max={10000} onChange={handleMinChange} />
       </div>
-      <div className="flex flex-col items-center justify-between">
-        <label htmlFor="max">Max</label>
-        <input id="max" type="number" value={max} min={1} max={20000} onChange={handleMaxChange} />
+      <div className="flex items-center justify-between md:flex-col md:items-start">
+        <label htmlFor="max">MAX</label>
+        <input className="w-1/2 md:w-1/5" id="max" type="number" value={max} min={1} max={20000} onChange={handleMaxChange} />
       </div>
-      <button onClick={handleSave} className="button h-1/2" disabled={(!min && !max) || saving}>
-        {saving ? 'Saving...' : 'Save'}
-      </button>
+      <div className="flex items-center md:items-start">
+        <button onClick={handleSave} className="button h-1/2 w-full md:w-1/5" disabled={(!min && !max) || saving}>
+          {saving ? 'Saving...' : 'Save'}
+        </button>
+      </div>
     </div>
   )
 }

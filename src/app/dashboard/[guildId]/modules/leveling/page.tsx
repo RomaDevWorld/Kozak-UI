@@ -9,27 +9,26 @@ const LevelingModulePage = async ({ params }: { params: { guildId: string } }) =
   const modules = await fetchGuildModules(params.guildId)
 
   return (
-    <div className="container flex flex-col gap-5">
-      <h1 className="text-2xl font-bold text-center">Configure leveling</h1>
-      <div className="flex flex-row gap-10 items-center">
-        <h1 className="text-xl font-bold">Toggle</h1>
+    <div className="container">
+      <section className="section flex items-center gap-4">
+        <h1 className="text-xl font-bold uppercase">status:</h1>
         <LevelingModuleToggle modules={modules} />
-      </div>
-      <div className="flex flex-row gap-10 items-center">
-        <h1 className="text-xl font-bold">XP range</h1>
+      </section>
+      <section className="section">
+        <h1 className="text-xl font-bold uppercase">XP range</h1>
         <MinMaxXp modules={modules} />
-      </div>
-      <div className="flex flex-row gap-10 items-center">
-        <h1 className="text-xl font-bold">XP cooldown</h1>
+      </section>
+      <section className="section">
+        <h1 className="text-xl font-bold uppercase">XP cooldown (seconds)</h1>
         <XpCooldownSelector modules={modules} />
-      </div>
-      <div className="flex flex-col gap-2 items-center">
-        <h1 className="text-xl font-bold">Notifications</h1>
+      </section>
+      <section className="section">
+        <h1 className="text-xl font-bold uppercase">notifications</h1>
         <div className="flex-row flex gap-4 items-center">
-          <h1>On lvl up:</h1>
+          <h1 className="text-lg">On lvl up:</h1>
           <XpNotificationsToggle modules={modules} />
         </div>
-      </div>
+      </section>
     </div>
   )
 }
