@@ -12,8 +12,6 @@ const XpNotificationsToggle = ({ modules }: { modules: Modules }) => {
   const handleToggle = async () => {
     setSaving(true)
 
-    setActive(!active)
-
     try {
       const payload = {
         [`leveling.notifications.onLvlUp`]: active,
@@ -22,14 +20,14 @@ const XpNotificationsToggle = ({ modules }: { modules: Modules }) => {
       await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${modules.guildId}/admin/modules`, payload, { withCredentials: true })
 
       toast.success('Setting applied!')
+
+      setActive(!active)
     } catch (error) {
       toast.error('Request failed!')
       console.error(error)
     } finally {
       setSaving(false)
     }
-
-    setActive(!active)
   }
 
   if (saving)

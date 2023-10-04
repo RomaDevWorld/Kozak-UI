@@ -13,13 +13,13 @@ const AutoRoleSelector = ({ roles, modules }: { roles: PartialRole[]; modules: M
   const [saving, setSaving] = useState(false)
 
   const handleSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedRole(e.target.value)
-
     try {
       setSaving(true)
-      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'roles.autorole': selectedRole }, { withCredentials: true })
+      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'roles.autorole': e.target.value }, { withCredentials: true })
 
       toast.success('Setting applied!')
+
+      setSelectedRole(e.target.value)
     } catch (err) {
       toast.error('Request failed!')
       console.error(err)
