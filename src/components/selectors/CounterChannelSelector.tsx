@@ -14,16 +14,19 @@ const CounterChannelSelector = ({ channels, modules }: { channels: PartialChanne
   const [saving, setSaving] = useState(false)
 
   const handleChannelSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const fallbackValue = selectedChannel
+
+    setSelectedChannel(event.target.value)
+
     try {
       setSaving(true)
       await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'counter.channelId': event.target.value }, { withCredentials: true })
 
       toast.success('Setting applied!')
-
-      setSelectedChannel(event.target.value)
     } catch (err) {
       toast.error('Request failed!')
       console.error(err)
+      setSelectedChannel(fallbackValue)
     } finally {
       setSaving(false)
     }
