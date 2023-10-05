@@ -14,7 +14,7 @@ const XpNotificationsToggle = ({ modules }: { modules: Modules }) => {
 
     try {
       const payload = {
-        [`leveling.notifications.onLvlUp`]: active,
+        [`leveling.notifications.onLvlUp`]: !active,
       }
 
       await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${modules.guildId}/admin/modules`, payload, { withCredentials: true })

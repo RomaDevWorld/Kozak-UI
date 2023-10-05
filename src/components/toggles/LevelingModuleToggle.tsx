@@ -14,7 +14,7 @@ const LevelingModuleToggle = ({ modules }: { modules: Modules }) => {
 
     try {
       const payload = {
-        [`leveling.status`]: active,
+        [`leveling.status`]: !active,
       }
 
       await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${modules.guildId}/admin/modules`, payload, { withCredentials: true })
