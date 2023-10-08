@@ -33,8 +33,8 @@ const XpCooldownSelector = ({ modules }: { modules: Modules }) => {
   }
 
   return (
-    <div className="flex items-center justify-between">
-      <input type="number" value={time} min={0} max={30} onChange={handleChange} />
+    <div className="flex items-center gap-2 justify-between md:w-1/5">
+      <input type="number" value={time} min={0} max={30} className="" onChange={handleChange} />
 
       <button onClick={handleSave} className="button" disabled={!time || saving}>
         {saving ? 'Saving...' : 'Save'}

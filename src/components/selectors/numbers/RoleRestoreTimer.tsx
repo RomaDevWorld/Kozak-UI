@@ -54,26 +54,28 @@ const RoleRestoreTimer = ({ modules }: { modules: Modules }) => {
   }
 
   return (
-    <div className="flex flex-col text-center font-bold">
+    <div className="flex flex-col text-center font-bold gap-3">
       <div className="flex items-center justify-between">
         <label htmlFor="days">Days</label>
-        <input id="days" type="number" value={days} min={0} max={30} onChange={handleDaysChange} />
+        <input className="w-1/5" id="days" type="number" value={days} min={0} max={30} onChange={handleDaysChange} />
       </div>
       <div className="flex items-center justify-between">
         <label htmlFor="hours">Hours</label>
-        <input id="hours" type="number" value={hours} min={0} max={24} onChange={handleHoursChange} />
+        <input className="w-1/5" id="hours" type="number" value={hours} min={0} max={24} onChange={handleHoursChange} />
       </div>
       <div className="flex items-center justify-between">
         <label htmlFor="minutes">Minutes</label>
-        <input id="minutes" type="number" value={minutes} min={0} max={60} onChange={handleMinutesChange} />
+        <input className="w-1/5" id="minutes" type="number" value={minutes} min={0} max={60} onChange={handleMinutesChange} />
       </div>
       <div className="flex items-center justify-between">
         <label htmlFor="seconds">Seconds</label>
-        <input id="seconds" type="number" value={seconds} min={0} max={60} onChange={handleSecondsChange} />
+        <input className="w-1/5" id="seconds" type="number" value={seconds} min={0} max={60} onChange={handleSecondsChange} />
       </div>
-      <button onClick={handleSave} className="button" disabled={(!days && !hours && !minutes && !seconds) || saving}>
-        {saving ? 'Saving...' : 'Save'}
-      </button>
+      <div>
+        <button onClick={handleSave} className="button w-1/3 " disabled={(!days && !hours && !minutes && !seconds) || saving}>
+          {saving ? 'Saving...' : 'Save'}
+        </button>
+      </div>
     </div>
   )
 }

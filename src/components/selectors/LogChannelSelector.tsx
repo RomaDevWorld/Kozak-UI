@@ -14,16 +14,19 @@ const LogChannelSelector = ({ channels, modules }: { channels: PartialChannel[];
   const [saving, setSaving] = useState(false)
 
   const handleChannelSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const fallbackValue = selectedChannel
+
     setSelectedChannel(event.target.value)
 
     try {
       setSaving(true)
-      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'log.channel': selectedChannel }, { withCredentials: true })
+      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'log.channel': event.target.value }, { withCredentials: true })
 
       toast.success('Setting applied!')
     } catch (err) {
       toast.error('Request failed!')
       console.error(err)
+      setSelectedChannel(fallbackValue)
     } finally {
       setSaving(false)
     }

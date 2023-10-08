@@ -13,16 +13,19 @@ const AutoRoleSelector = ({ roles, modules }: { roles: PartialRole[]; modules: M
   const [saving, setSaving] = useState(false)
 
   const handleSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const fallbackValue = selectedRole
+
     setSelectedRole(e.target.value)
 
     try {
       setSaving(true)
-      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'roles.autorole': selectedRole }, { withCredentials: true })
+      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'roles.autorole': e.target.value }, { withCredentials: true })
 
       toast.success('Setting applied!')
     } catch (err) {
       toast.error('Request failed!')
       console.error(err)
+      setSelectedRole(fallbackValue)
     } finally {
       setSaving(false)
     }
@@ -31,8 +34,10 @@ const AutoRoleSelector = ({ roles, modules }: { roles: PartialRole[]; modules: M
   return (
     <div>
       <select id="autoRoleSelect" value={selectedRole} disabled={saving} onChange={handleSelect}>
+        <option value="">None</option>
         {roles
-          .filter((role) => role.id !== modules.guildId && !role.managed)
+          .filter((role) => role.id !== modules.guildId && !role.managed && (parseInt(role.permissions) & 0x08) !== 0x08)
+          .sort((a, b) => (a.name > b.name ? 1 : -1))
           .map((role) => (
             <option key={role.id} value={role.id}>{`${role.name} (ID: ${role.id})`}</option>
           ))}

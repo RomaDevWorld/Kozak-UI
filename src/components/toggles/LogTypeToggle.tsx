@@ -13,8 +13,6 @@ const LogTypeToggle = ({ modules, type }: { modules: Modules; type: keyof LogTyp
   const handleToggle = async () => {
     setSaving(true)
 
-    setActive(!active)
-
     try {
       const payload = {
         [`log.types.${type}`]: !active,
@@ -23,6 +21,8 @@ const LogTypeToggle = ({ modules, type }: { modules: Modules; type: keyof LogTyp
       await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${modules.guildId}/admin/modules`, payload, { withCredentials: true })
 
       toast.success('Setting applied!')
+
+      setActive(!active)
     } catch (error) {
       toast.error('Request failed!')
       console.error(error)

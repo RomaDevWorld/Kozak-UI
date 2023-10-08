@@ -6,7 +6,7 @@ import Image from 'next/image'
 import AddBotButton from '@/components/buttons/AddBotButton'
 
 const DashboardPage = async () => {
-  const response = await fetch(process.env.APIURL + '/guilds/', { headers: { Cookie: `connect.sid=${cookies().get('connect.sid')?.value}` }, next: { revalidate: 60 } })
+  const response = await fetch(process.env.APIURL + '/guilds/', { headers: { Cookie: `connect.sid=${cookies().get('connect.sid')?.value}` }, next: { revalidate: 5 } })
   if (!response.ok) return
   const guilds: PartialGuild[] = await response.json()
 
