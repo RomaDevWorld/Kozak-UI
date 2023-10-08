@@ -15,7 +15,7 @@ export default async function RootLayout({ children, params }: { children: React
   const guild = await fetchGuild(params.guildId)
 
   return (
-    <div>
+    <div className="flex-1">
       <Navbar guild={guild} />
       {children}
       <ToastContainer position="bottom-right" theme="dark" autoClose={1500} newestOnTop={true} />
