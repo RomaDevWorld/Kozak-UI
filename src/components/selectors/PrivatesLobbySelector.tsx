@@ -10,7 +10,7 @@ import { ChannelOption } from './options/ChannelOption'
 const PrivatesLobbySelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
   const guildId = modules.guildId
 
-  const [selectedChannel, setSelectedChannel] = useState(modules.log?.channel || '')
+  const [selectedChannel, setSelectedChannel] = useState(modules.lobby.channel || '')
   const [saving, setSaving] = useState(false)
 
   const handleChannelSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
