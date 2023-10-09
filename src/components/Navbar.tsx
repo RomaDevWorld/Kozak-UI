@@ -16,7 +16,7 @@ const NavBar = ({ guild }: { guild: PartialGuild }) => {
         </button>
         <Link href={`/dashboard/${guild.id}`} className="flex justify-center items-center gap-3">
           <span className="text-center text-xl font-bold">{guild.name}</span>
-          <Image src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`} width={45} className="rounded-full" height={45} alt="Guild icon" />
+          <Image src={guild.icon !== null ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : '/discord.svg'} alt="Guild icon" width={45} height={45} className="rounded-lg object-cover invert" />
         </Link>
       </nav>
       {open && (
