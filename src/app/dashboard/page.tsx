@@ -17,7 +17,7 @@ const DashboardPage = async () => {
         {guilds.map((guild) => (
           <div key={guild.id} className="flex rounded-md p-5 bg-slate-500 w-[250px] h-[250px]">
             <Link href={`/dashboard/${guild.id}`} className="flex justify-center flex-col items-center">
-              <Image src={guild.icon !== null ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : '/discord.svg'} alt="Guild icon" width={200} height={200} className="rounded-lg object-cover" />
+              <Image src={guild.icon !== null ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : '/meh.svg'} alt="Guild icon" width={200} height={200} className="rounded-lg object-cover" />
               <h1 className="text-2xl font-bold text-center">{guild.name}</h1>
             </Link>
           </div>
