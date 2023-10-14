@@ -1,49 +1,59 @@
 'use client'
 
 import { Modules } from '@/types/Modules'
-import PartialRole from '@/types/PartialRole'
 import axios from 'axios'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
+import Select, { SingleValue } from 'react-select'
+import { darkSelectStyles } from '@/constants/Select-Styles'
+import PartialRole from '@/types/PartialRole'
 
-const AutoRoleSelector = ({ roles, modules }: { roles: PartialRole[]; modules: Modules }) => {
+const LogChannelSelector = ({ roles, modules }: { roles: PartialRole[]; modules: Modules }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const guildId = modules.guildId
 
-  const [selectedRole, setSelectedRole] = useState(modules.roles?.autorole || '')
-  const [saving, setSaving] = useState(false)
-
-  const handleSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const fallbackValue = selectedRole
-
-    setSelectedRole(e.target.value)
-
+  const handleChange = async (
+    newValue: SingleValue<{
+      value: string
+      label: string
+    }>
+  ) => {
     try {
-      setSaving(true)
-      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'roles.autorole': e.target.value }, { withCredentials: true })
+      setIsLoading(true)
+
+      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'roles.autorole': newValue?.value || null }, { withCredentials: true })
 
       toast.success('Setting applied!')
     } catch (err) {
       toast.error('Request failed!')
       console.error(err)
-      setSelectedRole(fallbackValue)
     } finally {
-      setSaving(false)
+      setIsLoading(false)
     }
   }
 
+  const rolesOptions = roles
+    .filter((role) => role.id !== modules.guildId && !role.managed && (parseInt(role.permissions) & 0x08) !== 0x08)
+    .sort((a, b) => (a.name > b.name ? 1 : -1))
+    .map((role) => {
+      return {
+        value: role.id,
+        label: role.name,
+      }
+    })
+
   return (
-    <div>
-      <select id="autoRoleSelect" value={selectedRole} disabled={saving} onChange={handleSelect}>
-        <option value="">None</option>
-        {roles
-          .filter((role) => role.id !== modules.guildId && !role.managed && (parseInt(role.permissions) & 0x08) !== 0x08)
-          .sort((a, b) => (a.name > b.name ? 1 : -1))
-          .map((role) => (
-            <option key={role.id} value={role.id}>{`${role.name} (ID: ${role.id})`}</option>
-          ))}
-      </select>
-    </div>
+    <Select
+      styles={darkSelectStyles}
+      closeMenuOnSelect={true}
+      isMulti={false}
+      options={rolesOptions}
+      onChange={handleChange}
+      isClearable={true}
+      isLoading={isLoading}
+      defaultValue={{ value: modules.roles.autorole || 'N/A', label: roles.find((role) => role.id === modules.roles.autorole)?.name || 'N/A' }}
+    />
   )
 }
 
-export default AutoRoleSelector
+export default LogChannelSelector
