@@ -5,45 +5,47 @@ import PartialChannel from '@/types/PartialChannel'
 import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { ChannelOption } from './options/ChannelOption'
+import Select, { SingleValue } from 'react-select'
+import { darkSelectStyles } from '@/constants/Select-Styles'
+import channelTypes from '@/constants/ChannelTypes'
 
-const CounterChannelSelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
+const PrivatesLobbySelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const guildId = modules.guildId
 
-  const [selectedChannel, setSelectedChannel] = useState(modules.counter.channelId || '')
-  const [saving, setSaving] = useState(false)
-
-  const handleChannelSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const fallbackValue = selectedChannel
-
-    setSelectedChannel(event.target.value)
-
+  const handleChange = async (
+    newValue: SingleValue<{
+      value: string
+      label: string
+    }>
+  ) => {
     try {
-      setSaving(true)
-      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'counter.channelId': event.target.value }, { withCredentials: true })
+      setIsLoading(true)
+
+      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'counter.channelId': newValue?.value || null }, { withCredentials: true })
 
       toast.success('Setting applied!')
     } catch (err) {
       toast.error('Request failed!')
       console.error(err)
-      setSelectedChannel(fallbackValue)
     } finally {
-      setSaving(false)
+      setIsLoading(false)
     }
   }
 
-  return (
-    <div className="flex flex-col">
-      <select disabled={saving} className="max-w-[95vw]" id="counterChannelSelect" value={selectedChannel} onChange={handleChannelSelect}>
-        <option value="">None</option>
-        {channels
-          .filter((channel) => [2, 4].includes(channel.type))
-          .map((channel) => (
-            <ChannelOption channel={channel} key={channel.id} showTypes={true} />
-          ))}
-      </select>
-    </div>
-  )
+  const channelOptions = channels
+    .filter((channel) => [2, 4].includes(channel.type))
+    .map((channel) => {
+      return {
+        value: channel.id,
+        label: `${channelTypes[channel.type]}: ${channel.name}`,
+      }
+    })
+
+  const selectedChannel = channels.find((channel) => channel.id === modules.counter.channelId)
+  const defaultValue = selectedChannel ? { value: selectedChannel.id, label: `${channelTypes[selectedChannel.type]}: ${selectedChannel.name}` } : { value: '0', label: 'N/A' }
+
+  return <Select styles={darkSelectStyles} closeMenuOnSelect={true} isMulti={false} options={channelOptions} onChange={handleChange} isClearable={true} isLoading={isLoading} defaultValue={defaultValue} />
 }
 
-export default CounterChannelSelector
+export default PrivatesLobbySelector
