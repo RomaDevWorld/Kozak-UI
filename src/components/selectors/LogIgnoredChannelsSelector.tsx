@@ -27,12 +27,14 @@ const LogIgnoredChannelsSelector = ({ modules, channels }: { modules: Modules; c
     }
   }
 
-  const channelOptions = channels.map((channel) => {
-    return {
-      value: channel.id,
-      label: channel.name,
-    }
-  })
+  const channelOptions = channels
+    .filter((channel) => [0, 11, 5, 10].includes(channel.type))
+    .map((channel) => {
+      return {
+        value: channel.id,
+        label: channel.name,
+      }
+    })
 
   return (
     <Select
