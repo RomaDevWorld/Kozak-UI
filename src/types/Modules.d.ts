@@ -16,6 +16,8 @@ export interface Modules {
   guildId: string
   log: {
     channel: string | null
+    ignoredChannels: string[]
+    ignoredRoles: string[]
     types: LogTypes
   }
   lobby: {
