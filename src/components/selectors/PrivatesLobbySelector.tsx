@@ -5,44 +5,53 @@ import PartialChannel from '@/types/PartialChannel'
 import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { ChannelOption } from './options/ChannelOption'
+import Select, { SingleValue } from 'react-select'
+import { darkSelectStyles } from '@/constants/Select-Styles'
 
 const PrivatesLobbySelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const guildId = modules.guildId
 
-  const [selectedChannel, setSelectedChannel] = useState(modules.lobby.channel || '')
-  const [saving, setSaving] = useState(false)
-
-  const handleChannelSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const fallbackValue = selectedChannel
-
-    setSelectedChannel(event.target.value)
-
+  const handleChange = async (
+    newValue: SingleValue<{
+      value: string
+      label: string
+    }>
+  ) => {
     try {
-      setSaving(true)
-      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'lobby.channel': event.target.value }, { withCredentials: true })
+      setIsLoading(true)
+
+      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'lobby.channel': newValue?.value || null }, { withCredentials: true })
 
       toast.success('Setting applied!')
     } catch (err) {
       toast.error('Request failed!')
       console.error(err)
-      setSelectedChannel(fallbackValue)
     } finally {
-      setSaving(false)
+      setIsLoading(false)
     }
   }
 
+  const channelOptions = channels
+    .filter((channel) => channel.type === 2)
+    .map((channel) => {
+      return {
+        value: channel.id,
+        label: channel.name,
+      }
+    })
+
   return (
-    <div className="flex flex-col">
-      <select disabled={saving} className="max-w-[95vw]" id="logChannelSelect" value={selectedChannel} onChange={handleChannelSelect}>
-        <option value="">None</option>
-        {channels
-          .filter((channel) => channel.type === 2)
-          .map((channel) => (
-            <ChannelOption key={channel.id} channel={channel} />
-          ))}
-      </select>
-    </div>
+    <Select
+      styles={darkSelectStyles}
+      closeMenuOnSelect={true}
+      isMulti={false}
+      options={channelOptions}
+      onChange={handleChange}
+      isClearable={true}
+      isLoading={isLoading}
+      defaultValue={{ value: modules.lobby.channel || 'N/A', label: channels.find((channel) => channel.id === modules.lobby.channel)?.name || 'N/A' }}
+    />
   )
 }
 
