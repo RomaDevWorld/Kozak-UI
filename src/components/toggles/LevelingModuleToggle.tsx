@@ -39,7 +39,7 @@ const LevelingModuleToggle = ({ modules }: { modules: Modules }) => {
 
   if (active)
     return (
-      <div className="flex justify-center items-center p-3 px-5 rounded-md bg-green-400 cursor-pointer" onClick={handleToggle}>
+      <div className="flex justify-center items-center p-3 px-5 rounded-md bg-green-700 cursor-pointer" onClick={handleToggle}>
         <h3 className="capitalize font-bold">{active ? 'ON' : 'OFF'}</h3>
       </div>
     )
