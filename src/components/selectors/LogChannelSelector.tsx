@@ -50,7 +50,7 @@ const LogChannelSelector = ({ channels, modules }: { channels: PartialChannel[];
       onChange={handleChange}
       isClearable={true}
       isLoading={isLoading}
-      defaultValue={{ value: modules.log.channel || 'N/A', label: channels.find((channel) => channel.id === modules.log.channel)?.name || 'N/A' }}
+      defaultValue={modules.log.channel ? { value: modules.log.channel, label: channels.find((channel) => channel.id === modules.log.channel)?.name || 'N/A' } : undefined}
     />
   )
 }
