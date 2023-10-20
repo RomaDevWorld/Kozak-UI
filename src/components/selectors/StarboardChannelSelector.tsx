@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import Select, { SingleValue } from 'react-select'
 import { darkSelectStyles } from '@/constants/Select-Styles'
 
-const LogChannelSelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
+const StarboardChannelSelector = ({ channels, modules }: { channels: PartialChannel[]; modules: Modules }) => {
   const [isLoading, setIsLoading] = useState(false)
   const guildId = modules.guildId
 
@@ -21,7 +21,7 @@ const LogChannelSelector = ({ channels, modules }: { channels: PartialChannel[];
     try {
       setIsLoading(true)
 
-      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'log.channel': newValue?.value || null }, { withCredentials: true })
+      await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${guildId}/admin/modules`, { 'starboard.channelId': newValue?.value || null }, { withCredentials: true })
 
       toast.success('Setting applied!')
     } catch (err) {
@@ -50,9 +50,9 @@ const LogChannelSelector = ({ channels, modules }: { channels: PartialChannel[];
       onChange={handleChange}
       isClearable={true}
       isLoading={isLoading}
-      defaultValue={modules.log.channel ? { value: modules.log.channel, label: channels.find((channel) => channel.id === modules.log.channel)?.name || 'N/A' } : undefined}
+      defaultValue={modules.starboard.channelId ? { value: modules.starboard.channelId, label: channels.find((channel) => channel.id === modules.starboard.channelId)?.name || 'N/A' } : undefined}
     />
   )
 }
 
-export default LogChannelSelector
+export default StarboardChannelSelector

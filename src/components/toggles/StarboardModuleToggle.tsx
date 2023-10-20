@@ -5,8 +5,8 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 
-const LevelingModuleToggle = ({ modules }: { modules: Modules }) => {
-  const [active, setActive] = useState(modules.leveling?.status)
+const StarboardModuleToggle = ({ modules }: { modules: Modules }) => {
+  const [active, setActive] = useState(modules.starboard?.status)
   const [saving, setSaving] = useState(false)
 
   const handleToggle = async () => {
@@ -14,7 +14,7 @@ const LevelingModuleToggle = ({ modules }: { modules: Modules }) => {
 
     try {
       const payload = {
-        [`leveling.status`]: !active,
+        [`starboard.status`]: !active,
       }
 
       await axios.post(`${process.env.NEXT_PUBLIC_APIURL}/guilds/${modules.guildId}/admin/modules`, payload, { withCredentials: true })
@@ -51,4 +51,4 @@ const LevelingModuleToggle = ({ modules }: { modules: Modules }) => {
   )
 }
 
-export default LevelingModuleToggle
+export default StarboardModuleToggle

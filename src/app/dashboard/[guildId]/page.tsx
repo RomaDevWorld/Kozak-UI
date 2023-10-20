@@ -15,6 +15,7 @@ const GuildOverviewPage = async ({ params }: { params: { guildId: string } }) =>
         <GuildOverviewTile icon="/users.svg" label="Auto roles" href={guildId + `/modules/auto-roles`} />
         <GuildOverviewTile icon="/bar-chart-2.svg" label="Leveling" href={guildId + `/modules/leveling`} />
         <GuildOverviewTile icon="/mic.svg" label="Privates" href={guildId + `/modules/privates`} />
+        <GuildOverviewTile icon="/star.svg" label="Starboard" href={guildId + `/modules/starboard`} />
       </div>
     </>
   )

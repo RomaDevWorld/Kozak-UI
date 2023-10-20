@@ -34,6 +34,12 @@ export interface Modules {
       expireTime: number
     }
   }
+  starboard: {
+    status: boolean
+    channelId: string | null
+    emoji: string | null
+    threshold: number
+  }
   leveling: {
     status: boolean
     minXp: number
