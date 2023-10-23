@@ -13,16 +13,16 @@ const DashboardPage = async () => {
   return (
     <div className="p-5 flex flex-col w-full h-full items-center gap-5">
       <h1 className="font-bold text-3xl text-center">Servers</h1>
-      <div className="flex flex-wrap gap-4 justify-center items-center w-[95vw] bg-slate-400 p-5 rounded-lg">
-        {guilds.map((guild) => (
-          <div key={guild.id} className="flex rounded-md p-5 bg-slate-500 w-[250px] h-[250px]">
-            <Link href={`/dashboard/${guild.id}`} className="flex justify-center flex-col items-center">
-              <Image src={guild.icon !== null ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : '/meh.svg'} alt="Guild icon" width={200} height={200} className="rounded-lg object-cover" />
-              <h1 className="text-2xl font-bold text-center">{guild.name}</h1>
-            </Link>
-          </div>
-        ))}
-      </div>
+      {guilds.map((guild) => (
+        <div key={guild.id} className="w-1/2">
+          <Link href={`/dashboard/${guild.id}`} className="flex flex-col items-center justify-center gap-3 bg-slate-500 p-2 rounded-md w-full md:flex-row">
+            <div className="relative w-40 h-40 md:w-24 md:h-24">
+              <Image src={guild.icon !== null ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : '/meh.svg'} alt="Guild icon" fill={true} className="rounded-lg object-cover flex-1" />
+            </div>
+            <h1 className="text-2xl font-bold text-center flex-1">{guild.name}</h1>
+          </Link>
+        </div>
+      ))}
       <div className="flex flex-col items-center gap-2">
         <h2>{`Don't see your guilds? Try adding the bot to your server!`}</h2>
         <AddBotButton />
