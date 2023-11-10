@@ -17,6 +17,9 @@ const names = {
   guildMemberRemove: {
     name: 'Member left',
   },
+  guildMemberWarn: {
+    name: 'Member warned',
+  },
   guildMemberReport: {
     name: "Member's reports",
   },

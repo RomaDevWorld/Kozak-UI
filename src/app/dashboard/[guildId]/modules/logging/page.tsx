@@ -58,6 +58,7 @@ const LoggingModulePage = async ({ params }: { params: { guildId: string } }) =>
           <LogTypeToggle type="guildMemberRolesUpdate" modules={modules} />
           <LogTypeToggle type="guildMemberTimeout" modules={modules} />
           <LogTypeToggle type="guildMemberNicknameUpdate" modules={modules} />
+          <LogTypeToggle type="guildMemberWarn" modules={modules} />
         </div>
         <div className={styles.eventGroup}>
           <h2>Voice Activity Events</h2>

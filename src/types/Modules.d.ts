@@ -10,6 +10,7 @@ export interface LogTypes {
   guildBanRemove: boolean
   guildBanAdd: boolean
   guildMemberReport: boolean
+  guildMemberWarn: boolean
 }
 
 export interface Modules {
